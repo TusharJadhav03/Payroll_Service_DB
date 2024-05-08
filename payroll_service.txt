@@ -286,4 +286,40 @@ mysql> SELECT COUNT(salary) FROM employee_payroll WHERE gender = 'F' GROUP BY ge
 1 row in set (0.00 sec)
 
 
+====================================================================================================================================
+	UC8 - Ability to extend employee payroll data to store employee information like employee phone, address, department
+====================================================================================================================================
+
+
+mysql> ALTER TABLE employee_payroll ADD (Phone_no INT ,Address VARCHAR(255) DEFAULT 'MUMBAI',Department VARCHAR(255) NOT NULL );
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESCRIBE employee_payroll;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| employee_id | int          | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(255) | NO   |     | NULL    |                |
+| gender      | varchar(255) | YES  |     | NULL    |                |
+| salary      | double       | NO   |     | NULL    |                |
+| start_date  | date         | NO   |     | NULL    |                |
+| Phone_no    | int          | YES  |     | NULL    |                |
+| Address     | varchar(255) | YES  |     | MUMBAI  |                |
+| Department  | varchar(255) | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM employee_payroll;
++-------------+---------+--------+--------+------------+----------+---------+------------+
+| employee_id | name    | gender | salary | start_date | Phone_no | Address | Department |
++-------------+---------+--------+--------+------------+----------+---------+------------+
+|           1 | Tushar  | M      |  30000 | 2024-02-16 |     NULL | MUMBAI  |            |
+|           2 | Vedant  | M      |  35000 | 2023-07-20 |     NULL | MUMBAI  |            |
+|           3 | Vaibhav | M      |  32000 | 2024-01-02 |     NULL | MUMBAI  |            |
+|           4 | Sayali  | F      |  28000 | 2024-01-03 |     NULL | MUMBAI  |            |
+|           5 | Anjali  | F      |  31000 | 2024-03-16 |     NULL | MUMBAI  |            |
++-------------+---------+--------+--------+------------+----------+---------+------------+
+5 rows in set (0.00 sec)
+
 
