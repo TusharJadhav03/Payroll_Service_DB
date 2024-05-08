@@ -363,4 +363,67 @@ mysql> SELECT * FROM employee_payroll;
 5 rows in set (0.00 sec)
 
 
+====================================================================================================================================
+	UC10 - Ability to extend employee payroll table to have Basic pay, Deductions, Taxable pay, Income tax, Net pay 
+====================================================================================================================================
 
+
+mysql> UPDATE employee_payroll SET Department = "IT",Basic_pay = 25000, Deductions = 1500, Taxable_pay = 2000, Income_tax = 700,Net_pay = 1000 WHERE name = "Tushar";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll WHERE name = "Tushar";
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+| employee_id | name   | gender | salary | start_date | Phone_no | Address | Department | Basic_pay | Deductions | Taxable_pay | Income_tax | Net_pay |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+|           1 | Tushar | M      |  30000 | 2024-02-16 |     NULL | MUMBAI  | IT         |     25000 |       1500 |        2000 |        700 |    1000 |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE employee_payroll SET Department = "SM",Basic_pay = 27000, Deductions = 1700, Taxable_pay = 1200, Income_tax = 900,Net_pay = 1200 WHERE name = "Vedant";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll WHERE name = "Vedant";
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+| employee_id | name   | gender | salary | start_date | Phone_no | Address | Department | Basic_pay | Deductions | Taxable_pay | Income_tax | Net_pay |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+|           2 | Vedant | M      |  35000 | 2023-07-20 |     NULL | MUMBAI  | SM         |     27000 |       1700 |        1200 |        900 |    1200 |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE employee_payroll SET Department = "IT",Basic_pay = 26000, Deductions = 1600, Taxable_pay = 1000, Income_tax = 700,Net_pay = 1100 WHERE name = "Vaibhav";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll WHERE name = "Vaibhav";
++-------------+---------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+| employee_id | name    | gender | salary | start_date | Phone_no | Address | Department | Basic_pay | Deductions | Taxable_pay | Income_tax | Net_pay |
++-------------+---------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+|           3 | Vaibhav | M      |  32000 | 2024-01-02 |     NULL | MUMBAI  | IT         |     26000 |       1600 |        1000 |        700 |    1100 |
++-------------+---------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE employee_payroll SET Department = "IT",Basic_pay = 24000, Deductions = 1200, Taxable_pay = 800, Income_tax = 500,Net_pay = 1000 WHERE name = "Sayali";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll WHERE name = "Sayali";
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+| employee_id | name   | gender | salary | start_date | Phone_no | Address | Department | Basic_pay | Deductions | Taxable_pay | Income_tax | Net_pay |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+|           4 | Sayali | F      |  28000 | 2024-01-03 |     NULL | MUMBAI  | IT         |     24000 |       1200 |         800 |        500 |    1000 |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> UPDATE employee_payroll SET Department = "IT",Basic_pay = 25500, Deductions = 1700, Taxable_pay = 2200, Income_tax = 850,Net_pay = 1100 WHERE name = "Anjali";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll WHERE name = "Anjali";
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+| employee_id | name   | gender | salary | start_date | Phone_no | Address | Department | Basic_pay | Deductions | Taxable_pay | Income_tax | Net_pay |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+|           5 | Anjali | F      |  31000 | 2024-03-16 |     NULL | MUMBAI  | IT         |     25500 |       1700 |        2200 |        850 |    1100 |
++-------------+--------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+
+1 row in set (0.00 sec)
