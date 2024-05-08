@@ -75,3 +75,36 @@ mysql> DESCRIBE employee_payroll;
 +-------------+--------------+------+-----+---------+----------------+
 4 rows in set (0.00 sec)
 
+
+==============================================================================================
+	UC3 - Ability to create employee payroll data in the payroll service database
+==============================================================================================
+
+mysql> show tables;
++---------------------------+
+| Tables_in_payroll_service |
++---------------------------+
+| employee_payroll          |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> DESCRIBE employee_payroll;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| employee_id | int          | NO   | PRI | NULL    | auto_increment |
+| name        | varchar(255) | NO   |     | NULL    |                |
+| salary      | double       | NO   |     | NULL    |                |
+| start_date  | date         | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO employee_payroll (name,salary,start_date) VALUES
+    -> ( "Tushar",30000,'2024-02-16'),
+    -> ("Vedant",35000,'2023-07-20'),
+    -> ("Vaibhav",32000,'2024-01-02'),
+    -> ("Sayali",28000,'2024-01-03'),
+    -> ("Anjali",31000,'2024-03-16');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
