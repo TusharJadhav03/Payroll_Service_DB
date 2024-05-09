@@ -482,4 +482,130 @@ mysql> SELECT * FROM employee_department;
 +-------------+---------------+
 5 rows in set (0.00 sec)
 
+===============================================================================================
+	UC12 - Ensure all retrieve queries done and  working with new table structure 
+===============================================================================================
+
+mysql> SELECT *
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> UNION
+    -> SELECT *
+    -> FROM employee_payroll AS ep
+    -> RIGHT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id;
++-------------+---------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+-------------+---------------+
+| employee_id | name    | gender | salary | start_date | Phone_no | Address | Department | Basic_pay | Deductions | Taxable_pay | Income_tax | Net_pay | employee_id | department_id |
++-------------+---------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+-------------+---------------+
+|           1 | Tushar  | M      |  30000 | 2024-02-16 |     NULL | MUMBAI  | IT         |     25000 |       1500 |        2000 |        700 |    1000 |           1 |           101 |
+|           2 | Vedant  | M      |  35000 | 2023-07-20 |     NULL | MUMBAI  | SM         |     27000 |       1700 |        1200 |        900 |    1200 |           2 |           102 |
+|           3 | Vaibhav | M      |  32000 | 2024-01-02 |     NULL | MUMBAI  | IT         |     26000 |       1600 |        1000 |        700 |    1100 |           3 |           103 |
+|           4 | Sayali  | F      |  28000 | 2024-01-03 |     NULL | MUMBAI  | IT         |     24000 |       1200 |         800 |        500 |    1000 |           4 |           104 |
+|           5 | Anjali  | F      |  31000 | 2024-03-16 |     NULL | MUMBAI  | IT         |     25500 |       1700 |        2200 |        850 |    1100 |           5 |           105 |
++-------------+---------+--------+--------+------------+----------+---------+------------+-----------+------------+-------------+------------+---------+-------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT salary
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> WHERE ed.department_id = 103;
++--------+
+| salary |
++--------+
+|  32000 |
++--------+
+1 row in set (0.00 sec)
+
+
+mysql> SELECT salary,name
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> WHERE start_date BETWEEN CAST('2024-01-01' AS DATE) AND DATE(NOW());
++--------+---------+
+| salary | name    |
++--------+---------+
+|  30000 | Tushar  |
+|  32000 | Vaibhav |
+|  28000 | Sayali  |
+|  31000 | Anjali  |
++--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT SUM(salary),gender
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> WHERE gender = 'M' OR gender = 'F' GROUP BY ep.gender;
++-------------+--------+
+| SUM(salary) | gender |
++-------------+--------+
+|       97000 | M      |
+|       59000 | F      |
++-------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT AVG(salary),gender
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> WHERE gender = 'M' OR gender = 'F' GROUP BY ep.gender;
++--------------------+--------+
+| AVG(salary)        | gender |
++--------------------+--------+
+| 32333.333333333332 | M      |
+|              29500 | F      |
++--------------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT MIN(salary),gender
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> WHERE gender = 'M' OR gender = 'F' GROUP BY ep.gender;
++-------------+--------+
+| MIN(salary) | gender |
++-------------+--------+
+|       30000 | M      |
+|       28000 | F      |
++-------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT MAX(salary),gender
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> WHERE gender = 'M' OR gender = 'F' GROUP BY ep.gender;
++-------------+--------+
+| MAX(salary) | gender |
++-------------+--------+
+|       35000 | M      |
+|       31000 | F      |
++-------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT COUNT(salary),gender
+    -> FROM employee_payroll AS ep
+    -> LEFT JOIN
+    -> employee_department AS ed
+    -> ON ep.employee_id = ed.employee_id
+    -> WHERE gender = 'M' OR gender = 'F' GROUP BY ep.gender;
++---------------+--------+
+| COUNT(salary) | gender |
++---------------+--------+
+|             3 | M      |
+|             2 | F      |
++---------------+--------+
+2 rows in set (0.00 sec)
+
 
